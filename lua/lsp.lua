@@ -2,12 +2,41 @@ local lsps = {
 	"lua_ls",
 	"ts_ls",
 	"tailwindcss",
-	"eslint"
+	"eslint",
+	"basedpyright"
 }
 
+local treesitter = {
+	"lua",
+	"javascript",
+	"typescript",
+	"tsx",
+	"python",
+	"html",
+}
 
 require("mason-lspconfig").setup {ensure_installed = lsps}
 vim.lsp.enable(lsps)
+
+-- treesitter
+require("nvim-treesitter.configs").setup({
+	ensure_installed = treesitter,
+	modules = {},
+	sync_install = false,
+	ignore_install = {},
+	auto_install = false,
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+})
+require("nvim-ts-autotag").setup({
+	opts = {
+		enable_close = true,       -- Auto close tags
+		enable_rename = true,      -- Auto rename pairs of tags
+		enable_close_on_slash = true -- Auto close on trailing </
+	}
+})
 
 vim.lsp.config("lua_ls", {
 	settings = {
@@ -15,7 +44,8 @@ vim.lsp.config("lua_ls", {
 			workspace = {
 				library = vim.api.nvim_get_runtime_file("", true)
 			},
-			diagnostics = { enable = true }
+			diagnostics = { globals = { "vim" } },
+			telemetry = { enable = false },
 		}
 	}
 })

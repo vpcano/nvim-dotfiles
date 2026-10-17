@@ -1,0 +1,44 @@
+{
+  "plugins": {
+    "backend-tmux": {
+      "rev": "9e9e6aa9b3eb7a8d3896a993611622ac97abff52",
+      "src": "https://github.com/smart-splits-nvim/backend-tmux"
+    },
+    "lualine.nvim": {
+      "rev": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955",
+      "src": "https://github.com/nvim-lualine/lualine.nvim"
+    },
+    "mason-lspconfig.nvim": {
+      "rev": "5e085efe67fccb13372d54331d849219662a7e93",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+    },
+    "mason.nvim": {
+      "rev": "7dc4facca9702f95353d5a1f87daf23d78e31c2a",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.nvim": {
+      "rev": "295af26358628c8ba8f007ff6a7e0aec2f642a31",
+      "src": "https://github.com/echasnovski/mini.nvim"
+    },
+    "nvim-lspconfig": {
+      "rev": "c8b90ae5cbe21d547b342b05c9266dcb8ca0de8f",
+      "src": "https://github.com/neovim/nvim-lspconfig"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-ts-autotag": {
+      "rev": "a1d526af391f6aebb25a8795cbc05351ed3620b5",
+      "src": "https://github.com/windwp/nvim-ts-autotag"
+    },
+    "smart-splits.nvim": {
+      "rev": "07dbad410256f755e69ffd31cb8d122bcd6b91f7",
+      "src": "https://github.com/mrjones2014/smart-splits.nvim"
+    },
+    "vague.nvim": {
+      "rev": "e3d316dc1b84bc759b4cf31619595a9ed7b3ee19",
+      "src": "https://github.com/vague2k/vague.nvim"
+    }
+  }
+}

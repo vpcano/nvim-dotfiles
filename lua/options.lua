@@ -9,6 +9,29 @@ vim.opt.smartindent = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
+
+-- Relative numbers only in the active window (absolute in inactive ones).
+-- Works with mini.statuscolumn since its default number section ('%l')
+-- follows the window-local 'relativenumber' option.
+local numbertoggle = vim.api.nvim_create_augroup('numbertoggle', { clear = true })
+vim.api.nvim_create_autocmd('WinEnter', {
+	desc = 'Enable relative numbers in active window',
+	group = numbertoggle,
+	callback = function()
+		if vim.wo.number then
+			vim.wo.relativenumber = true
+		end
+	end,
+})
+vim.api.nvim_create_autocmd('WinLeave', {
+	desc = 'Disable relative numbers in inactive window',
+	group = numbertoggle,
+	callback = function()
+		if vim.wo.number then
+			vim.wo.relativenumber = false
+		end
+	end,
+})
 vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.inccommand = 'split'
