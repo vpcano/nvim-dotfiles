@@ -49,7 +49,6 @@ indentscope.setup({
 		animation = indentscope.gen_animation.none(),
 	},
 })
-require("mini.cursorword").setup()
 -- custom highlight overrides (reapplied after colorscheme loads)
 local set_hl = function()
 	-- background-highlight cursorword occurrences instead of underline
@@ -57,6 +56,10 @@ local set_hl = function()
 	vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", { link = "LspReferenceText" })
 	-- dimmer indent scope line
 	vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { link = "Comment" })
+	-- brighter multicursor blocks, using the colorscheme's MiniTrailspace colors
+	-- (explicit colors: links don't resolve for the kitty-cursors rendering path)
+	local ts = vim.api.nvim_get_hl(0, { name = "MiniTrailspace", link = false })
+	vim.api.nvim_set_hl(0, "MCursor", { fg = ts.fg, bg = ts.bg })
 end
 set_hl()
 vim.api.nvim_create_autocmd("ColorScheme", { callback = set_hl })

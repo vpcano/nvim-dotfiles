@@ -3,14 +3,21 @@ local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 
-map('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Remove search highlight' })
-
--- clear multicursors (default <C-l> is taken by smart-splits)
+-- multicursors
 local clear_mcursors = '<Cmd>nohlsearch<Bar>diffupdate'
 	.. '<Bar>call nvim_buf_clear_namespace(0, nvim_create_namespace("nvim.multicursor"), 0, -1)'
 	.. '<Bar>normal! <C-L><CR>'
 map('n', '<leader>mc', clear_mcursors, { desc = 'Clear multicursors + search hl + redraw' })
 map('n', 'zQ', clear_mcursors, { desc = 'Clear multicursors + search hl + redraw' })
+map('n', '<Esc>', clear_mcursors, { desc = 'Clear multicursors + search hl + redraw' })
+
+map({ 'n', 'x' }, 'gl', function()
+	vim.api.nvim_input(vim.api.nvim_replace_termcodes('<Esc>1Q*:nohlsearch<CR>zv1q=viw', true, false, true))
+end, vim.tbl_extend('keep', { desc = 'Multicursor: select word, add cursor at next occurrence' }, opts))
+map({ 'n', 'x' }, 'gL', function()
+	vim.api.nvim_input(vim.api.nvim_replace_termcodes('<Esc>1Q#:nohlsearch<CR>zv1q=viw', true, false, true))
+end, vim.tbl_extend('keep', { desc = 'Multicursor: select word, add cursor at previous occurrence' }, opts))
+
 map('n', '<leader>w', ':write<CR>')
 map('n', '<leader>q', ':quit<CR>')
 map({ 'v', 'n', 'x' }, '<leader>y', '"+y')
