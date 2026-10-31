@@ -1,5 +1,4 @@
 vim.pack.add({
-	{ src = "https://github.com/vague2k/vague.nvim" },
 	{ src = 'https://github.com/neovim/nvim-lspconfig' },
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
@@ -9,9 +8,12 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/smart-splits-nvim/smart-splits.nvim" },
 	{ src = "https://github.com/smart-splits-nvim/backend-tmux" },
+	{ src = 'https://github.com/saghen/blink.lib' },
+	{ src = 'https://github.com/saghen/blink.cmp' },
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" }
 })
 
-require "mason".setup()
+require("mason").setup()
 
 -- mini
 require("mini.ai").setup({})
@@ -96,15 +98,18 @@ vim.keymap.set('n', '<C-M-k>', require('smart-splits').resize_up)
 vim.keymap.set('n', '<C-M-l>', require('smart-splits').resize_right)
 
 
--- vague colorscheme
-require "vague".setup({ transparent = true })
-vim.cmd("colorscheme vague")
+-- colorscheme
+require("catppuccin").setup({
+  flavour = "mocha", -- latte, frappe, macchiato, mocha
+	transparent_background = true,
+})
+vim.cmd("colorscheme catppuccin")
 
 
 -- lualine
 require "lualine".setup({
 	options = {
-		theme = "OceanicNext",
+		theme = "catppuccin-nvim",
 		component_separators = { left = '|', right = '|' },
 		section_separators = { left = ' ', right = ' ' },
 	},
@@ -116,5 +121,29 @@ require "lualine".setup({
 		lualine_y = { 'filetype' },
 		lualine_z = { 'progress', 'location' }
 	}
+})
+
+
+-- blink cmp
+local cmp = require('blink.cmp')
+cmp.build():pwait()
+cmp.setup({
+	keymap = {
+		preset = 'super-tab',
+		["<C-j>"] = { "select_next", "fallback" },
+		["<C-k>"] = { "select_prev", "fallback" },
+	},
+	appearance = { nerd_font_variant = "mono" },
+	completion = {
+		menu = {
+			auto_show = function()
+				return vim.bo.filetype ~= "markdown"
+			end,
+		},
+		ghost_text = { enabled = true },
+	},
+	-- signature help while typing function calls (was previously unset)
+	signature = { enabled = true },
+	sources = { default = { "lsp", "path", "buffer", "snippets" } },
 })
 

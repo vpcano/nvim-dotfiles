@@ -4,6 +4,18 @@
       "rev": "9e9e6aa9b3eb7a8d3896a993611622ac97abff52",
       "src": "https://github.com/smart-splits-nvim/backend-tmux"
     },
+    "blink.cmp": {
+      "rev": "06096f64b352e9e150d980917b380e179c78f32f",
+      "src": "https://github.com/saghen/blink.cmp"
+    },
+    "blink.lib": {
+      "rev": "fd9a48ebbe6ec30d5dfcc5b42c243941ccdca1aa",
+      "src": "https://github.com/saghen/blink.lib"
+    },
+    "catppuccin": {
+      "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
+      "src": "https://github.com/catppuccin/nvim"
+    },
     "lualine.nvim": {
       "rev": "b8c23159c0161f4b89196f74ee3a6d02cdc3a955",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
