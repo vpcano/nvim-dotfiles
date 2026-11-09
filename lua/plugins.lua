@@ -8,6 +8,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 	{ src = "https://github.com/smart-splits-nvim/smart-splits.nvim" },
 	{ src = "https://github.com/smart-splits-nvim/backend-tmux" },
+	{ src = "https://github.com/sfrieds3/smart-splits-backend-rex" },
 	{ src = 'https://github.com/saghen/blink.lib' },
 	{ src = 'https://github.com/saghen/blink.cmp' },
 	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" }
@@ -80,9 +81,9 @@ local spec = {
 statuscolumn.setup({ content = statuscolumn.gen_content.main(spec) })
 
 
--- samrt splits (tmux compatibility)
+-- smart splits (tmux and Rex compatibility)
 require "smart-splits".setup({
-	mux = { backend = 'smart-splits-backend-tmux' },
+	mux = { backend = { 'smart-splits-backend-tmux', 'smart-splits-backend-rex' } },
 	move = { at_edge = 'wrap' },
 	resize = { amount = 3 },
 })

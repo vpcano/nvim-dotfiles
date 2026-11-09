@@ -44,6 +44,10 @@
       "rev": "a1d526af391f6aebb25a8795cbc05351ed3620b5",
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
+    "smart-splits-backend-rex": {
+      "rev": "8e2e95f68119eb3fc42aea2def900446fe4b40b4",
+      "src": "https://github.com/sfrieds3/smart-splits-backend-rex"
+    },
     "smart-splits.nvim": {
       "rev": "07dbad410256f755e69ffd31cb8d122bcd6b91f7",
       "src": "https://github.com/mrjones2014/smart-splits.nvim"
